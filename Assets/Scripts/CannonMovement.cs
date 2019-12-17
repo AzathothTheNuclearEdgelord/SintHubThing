@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonMovement : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class CannonMovement : MonoBehaviour {
+    public GameObject enemy;
+
+    Vector3 startPos;
+    Quaternion startRot;
+
+    private void Awake() {
+        //startRot = transform.rotation;
+        //startPos = transform.position;
     }
 
+
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        transform.LookAt(transform.position + enemy.transform.rotation *
+        Vector3.forward, enemy.transform.rotation * Vector3.up);
     }
 }
