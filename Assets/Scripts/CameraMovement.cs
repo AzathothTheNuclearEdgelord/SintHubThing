@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
     public float velocity = 10f;
-    Vector3 startPos = new Vector3(0, 15, 0);
+    Vector3 startPos = new Vector3(0, 10, 0);
     Vector3 reuseVector;
 
     Vector3 movement;
@@ -18,6 +18,10 @@ public class CameraMovement : MonoBehaviour {
 
     }
 
+
+
+    float prevScrollWheel = 0;
+    float timeStep = 0;
     void PlayerMovement() {
         float distance = Time.deltaTime * velocity;
         float vertical = Input.GetAxis("Vertical");
@@ -27,12 +31,32 @@ public class CameraMovement : MonoBehaviour {
         movement = (verticalMovement + rightMovement) * distance;
         reuseVector = movement + transform.position;
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            reuseVector.y += 10;
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            reuseVector.y -= 10;
+            reuseVector.y += 5;
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            reuseVector.y -= 5;
+            
 
-        reuseVector.y = Mathf.Clamp(reuseVector.y, 15, 35);
+        /*float readScrollWheel = Input.GetAxis("Mouse ScrollWheel");
+        float scrollWheel = 0;
+
+        if (readScrollWheel > 0)
+            scrollWheel = 5;
+        if (readScrollWheel < 0)
+            scrollWheel = -5;
+
+        if (prevScrollWheel != scrollWheel) {
+            timeStep = 0;
+        }
+        else {
+            timeStep += 10f * Time.deltaTime;
+            reuseVector.y += Mathf.Lerp(0, scrollWheel, timeStep);
+            print(reuseVector.y);
+        }
+        prevScrollWheel = scrollWheel;*/
+
+
+        reuseVector.y = Mathf.Clamp(reuseVector.y, 5, 15);
 
         transform.position = reuseVector;
 
