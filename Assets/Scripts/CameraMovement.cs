@@ -22,16 +22,14 @@ public class CameraMovement : MonoBehaviour {
         float distance = Time.deltaTime * velocity;
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
-        float zoomFactor = Input.GetAxis("Mouse ScrollWheel");
         Vector3 verticalMovement = transform.forward * vertical;
         Vector3 rightMovement = transform.right * horizontal;
-        Vector3 upMovement = transform.up * zoomFactor;
         movement = (verticalMovement + rightMovement) * distance;
         reuseVector = movement + transform.position;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            reuseVector.y += 10;
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            reuseVector.y += 10;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
             reuseVector.y -= 10;
 
         reuseVector.y = Mathf.Clamp(reuseVector.y, 15, 35);
