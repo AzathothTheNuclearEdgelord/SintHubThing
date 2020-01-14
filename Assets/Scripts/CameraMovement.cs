@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
     public float velocity = 10f;
-    Vector3 startPos = new Vector3(0, 10, 0);
-    Vector3 reuseVector;
+    readonly Vector3 startPos = new Vector3(-30, 10, -30);
+    private Vector3 reuseVector;
 
     Vector3 movement;
 
@@ -15,10 +15,7 @@ public class CameraMovement : MonoBehaviour {
 
     void Update() {
         PlayerMovement();
-
     }
-
-
 
     float prevScrollWheel = 0;
     float timeStep = 0;

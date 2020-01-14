@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 594074801412229849}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Emitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594074801412229846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.344, y: -0, z: 0.175}
+  m_LocalPosition: {x: 0, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5567618112212980342}
@@ -56,14 +56,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8871949378469404773}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.066103, y: 9.657413, z: -13.403875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 594074801412229849}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3467527156458022976
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4020234436916204191, guid: 9926798dad2d44c4da6ae817adaf83c0, type: 3}
+  - {fileID: -5945402096816309425, guid: 9926798dad2d44c4da6ae817adaf83c0, type: 3}
   - {fileID: -5352597471007782525, guid: 9926798dad2d44c4da6ae817adaf83c0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -125,4 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
+  fireRate: 1
   enemyTag: Enemy
+  bulletPrefab: {fileID: 0}
+  emitter: {fileID: 594074801412229849}
