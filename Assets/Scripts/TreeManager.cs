@@ -22,7 +22,13 @@ public class TreeManager : MonoBehaviour
         switch (turret)
         {
             case ("Pine"):
-                Instantiate(pinePrefab, currentDeadTree.transform);
+                GameObject bollocks = Instantiate(pinePrefab, currentDeadTree.transform);
+                if (bollocks == null)
+                {
+                    print("pine failed");
+                    return;
+                }
+                bollocks.transform.SetParent(null);
                 break;
             case ("Birch"):
                 Instantiate(birchPrefab, currentDeadTree.transform);
