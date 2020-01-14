@@ -166,7 +166,7 @@ Transform:
   m_Children:
   - {fileID: 188929287}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &81748307
 GameObject:
@@ -260,7 +260,7 @@ RectTransform:
   m_Children:
   - {fileID: 347401042}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -637,7 +637,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &231481499 stripped
 GameObject:
@@ -939,7 +939,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9926798dad2d44c4da6ae817adaf83c0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9926798dad2d44c4da6ae817adaf83c0,
         type: 3}
@@ -1138,7 +1138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &777362678
 GameObject:
@@ -1231,7 +1231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &794099364 stripped
 Transform:
@@ -1337,6 +1337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 347401041}
   cam: {fileID: 963194227}
+  treeManager: {fileID: 1927259572}
+  currentDeadTree: {fileID: 0}
 --- !u!1 &1053683488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1097216667
 MonoBehaviour:
@@ -1772,7 +1774,7 @@ Transform:
   - {fileID: 794099364}
   - {fileID: 491559541}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345443007
 GameObject:
@@ -2058,7 +2060,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1465899511
 GameObject:
@@ -2103,7 +2105,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1001 &1476508761
 PrefabInstance:
@@ -2299,7 +2301,7 @@ Transform:
   - {fileID: 1502130364}
   - {fileID: 559271521}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587504341
 GameObject:
@@ -2532,7 +2534,7 @@ Transform:
   m_LocalScale: {x: 3, y: 8, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808487693
 GameObject:
@@ -2564,7 +2566,7 @@ Transform:
   - {fileID: 2030752820}
   - {fileID: 231481500}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1927259570
 GameObject:
@@ -2609,11 +2611,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda71b3b4b689b7978b4c576e9b458cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pinePrefab: {fileID: 0}
-  birchPrefab: {fileID: 0}
-  cherryPrefab: {fileID: 0}
-  deadTree: {fileID: 0}
-  menu: {fileID: 0}
+  pinePrefab: {fileID: -927199367670048503, guid: 0358ab1e217af3a4db340301f479398b,
+    type: 3}
+  birchPrefab: {fileID: -927199367670048503, guid: a16930e096430504c8162b170571cd8c,
+    type: 3}
+  cherryPrefab: {fileID: -927199367670048503, guid: 2d341a7d24fd13f4eb3141dc341659c9,
+    type: 3}
+  currentDeadTree: {fileID: 0}
+  menu: {fileID: 347401041}
 --- !u!1001 &2003326183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2659,7 +2664,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: d8587f3a389f2d445940814c3657c4ef,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d8587f3a389f2d445940814c3657c4ef,
         type: 3}
