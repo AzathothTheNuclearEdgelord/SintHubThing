@@ -2,47 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-    public enum Turrets
-    {
-        Pine,
-        Cherry,
-        Birch
-    }
+public enum Turrets
+{
+    Pine,
+    Cherry,
+    Birch
+}
 
 public class TreeManager : MonoBehaviour
 {
     public GameObject pinePrefab;
     public GameObject birchPrefab;
     public GameObject cherryPrefab;
-    [HideInInspector]
-    public GameObject currentDeadTree;
+    [HideInInspector] public GameObject currentDeadTree;
     public GameObject menu;
-    
+
     public void TurretSelector(string turret)
     {
         switch (turret)
         {
             case ("Pine"):
-                GameObject bollocks = Instantiate(pinePrefab, currentDeadTree.transform);
-                if (bollocks == null)
-                {
-                    print("pine failed");
-                    return;
-                }
-                bollocks.transform.SetParent(null);
+                AssignTree(pinePrefab);
                 break;
             case ("Birch"):
-                Instantiate(birchPrefab, currentDeadTree.transform);
+                AssignTree(birchPrefab);
                 break;
             case ("Cherry"):
-                Instantiate(cherryPrefab, currentDeadTree.transform);
+                AssignTree(cherryPrefab);
                 break;
             default:
                 print("Unknown turret");
                 return;
         }
+
         currentDeadTree.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+    }
+
+    private void AssignTree(GameObject treePrefab)
+    {
         
+        GameObject bollocks = Instantiate(treePrefab, currentDeadTree.transform);
+        if (bollocks == null)
+            Debug.LogError("Tree failed to spawn");
+        bollocks.transform.SetParent(null);
+        TreeStatus treeStatus = bollocks.GetComponent<TreeStatus>();
+        if (treeStatus == null)
+            Debug.LogError("No treeStatus found");
+        treeStatus.deadTree = currentDeadTree;
     }
 }
