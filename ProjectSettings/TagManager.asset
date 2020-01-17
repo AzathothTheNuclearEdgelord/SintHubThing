@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - TreeSocket
+  - deadTree
   layers:
   - Default
   - TransparentFX

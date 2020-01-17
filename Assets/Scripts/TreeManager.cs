@@ -45,7 +45,7 @@ public class TreeManager : MonoBehaviour
         GameObject bollocks = Instantiate(treePrefab, currentDeadTree.transform);
         if (bollocks == null)
             Debug.LogError("Tree failed to spawn");
-        bollocks.transform.SetParent(null);
+        bollocks.transform.SetParent(currentDeadTree.transform.parent);
         TreeStatus treeStatus = bollocks.GetComponent<TreeStatus>();
         if (treeStatus == null)
             Debug.LogError("No treeStatus found");

@@ -10,6 +10,8 @@
           <e p="CameraMovement.cs" t="Include" />
           <e p="CannonBallBehaviour.cs" t="Include" />
           <e p="CannonBehaviour.cs" t="Include" />
+          <e p="EnemyBehaviour.cs" t="Include" />
+          <e p="EnemySpawner.cs" t="Include" />
           <e p="MouseInterface.cs" t="Include" />
           <e p="SpriteMovement.cs" t="Include" />
           <e p="TreeManager.cs" t="Include" />

@@ -7,6 +7,7 @@ public class TreeStatus : MonoBehaviour
 {
     public GameObject deadTree;
     public int health;
+    public int attackWeight;
 
     public void Hit(int dmgValue)
     {
