@@ -23,4 +23,10 @@ public class EnemyBehaviour : MonoBehaviour
     {
         treeSockets = GameObject.FindGameObjectsWithTag("TreeSocket");
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("deadTree"))
+            agent.isStopped = true;
+    }
 }
