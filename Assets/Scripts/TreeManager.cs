@@ -8,6 +8,7 @@ using UnityEngine;
         Cherry,
         Birch
     }
+
 public class TreeManager : MonoBehaviour
 {
     public GameObject pinePrefab;

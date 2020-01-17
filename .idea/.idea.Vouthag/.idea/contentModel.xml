@@ -8,6 +8,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="CameraMovement.cs" t="Include" />
+          <e p="CannonBallBehaviour.cs" t="Include" />
           <e p="CannonBehaviour.cs" t="Include" />
           <e p="MouseInterface.cs" t="Include" />
           <e p="SpriteMovement.cs" t="Include" />

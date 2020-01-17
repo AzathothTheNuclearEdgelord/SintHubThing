@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteMovement : MonoBehaviour {
-    public Camera mainCamera;
-    void Start() {
-
+    private GameObject mainCamera;
+    void Start()
+    {
+        mainCamera = GameObject.Find("Main Camera");
+        if(mainCamera == null)
+            Debug.LogError("Failed to get camera");
     }
 
-    // Update is called once per frame
     void Update() {
         transform.LookAt(transform.position + mainCamera.transform.rotation *
         Vector3.forward, mainCamera.transform.rotation * Vector3.up);
