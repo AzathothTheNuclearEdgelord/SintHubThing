@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadTree: {fileID: 0}
-  health: 100
+  health: 5
+  attackWeight: 0
 --- !u!1001 &7301350285509546299
 PrefabInstance:
   m_ObjectHideFlags: 0

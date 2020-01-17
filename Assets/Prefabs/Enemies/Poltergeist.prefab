@@ -198,8 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b015dcf242a297df98bc3c45528302e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitStrength: 0
+  attackDamage: 1
+  enemyWeight: 1
   agent: {fileID: -2219136987663654812}
+  enemyHealth: 0
 --- !u!54 &8475753096022423636
 Rigidbody:
   m_ObjectHideFlags: 0

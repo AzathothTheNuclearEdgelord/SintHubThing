@@ -9,21 +9,25 @@ public class TreeStatus : MonoBehaviour
     public int health;
     public int attackWeight;
 
-    public void Hit(int dmgValue)
+    public void HitTree(int dmgValue)
     {
+        print("That hurt!" + health);
+        print(dmgValue);
+        
         health -= dmgValue;
         if (health <= 0)
         {
+            print("I'M DEAD");
             deadTree.SetActive(true);
             Destroy(gameObject);
         }
     }
     
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.K))
-    //     {
-    //         Hit(1000);
-    //     }
-    // }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            HitTree(1000);
+        }
+    }
 }

@@ -42,11 +42,11 @@ public class TreeManager : MonoBehaviour
     private void AssignTree(GameObject treePrefab)
     {
         
-        GameObject bollocks = Instantiate(treePrefab, currentDeadTree.transform);
-        if (bollocks == null)
+        GameObject spawnedTree = Instantiate(treePrefab, currentDeadTree.transform);
+        if (spawnedTree == null)
             Debug.LogError("Tree failed to spawn");
-        bollocks.transform.SetParent(currentDeadTree.transform.parent);
-        TreeStatus treeStatus = bollocks.GetComponent<TreeStatus>();
+        spawnedTree.transform.SetParent(currentDeadTree.transform.parent);
+        TreeStatus treeStatus = spawnedTree.GetComponent<TreeStatus>();
         if (treeStatus == null)
             Debug.LogError("No treeStatus found");
         treeStatus.deadTree = currentDeadTree;
