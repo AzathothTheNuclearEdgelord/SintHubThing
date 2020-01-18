@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Enemy Specific")]
     public int attackDamage = 1;
     public int enemyWeight = 1;
-    public NavMeshAgent agent;
+    public NavMeshAgent navMeshAgent;
     public int enemyHealth;
     private TreeStatus target;
     private GameObject[] treeSockets;
@@ -25,7 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.LogError("Didn't find animator");
         if (treeSockets.Length > 0)
         {
-            agent.SetDestination(treeSockets[0].transform.position);
+            navMeshAgent.SetDestination(treeSockets[0].transform.position);
         }
     }
 
@@ -48,6 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
         animator.SetBool(IsAttacking, false);
 
         SetNewTarget();
+        navMeshAgent.isStopped = false;
     }
 
     void EnemyDeath()
@@ -58,9 +59,18 @@ public class EnemyBehaviour : MonoBehaviour
 
     void SetNewTarget()
     {
-        // FindTreeSockets();
+        float shortestDistance = Mathf.Infinity;
+        Transform potentialTarget;
+        print($"Number of treeSockets: {treeSockets.Length}");
         foreach (GameObject treeSocket in treeSockets)
         {
+            print($"Treesocket: {treeSocket}");
+            TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
+            if (treeStatus == null)
+                continue;
+            navMeshAgent.SetDestination(treeSocket.transform.position);
+            shortestDistance = Math.Min(navMeshAgent.remainingDistance, shortestDistance);
+            print($"Distance: {shortestDistance}");
         }
     }
 
@@ -70,7 +80,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (!other.transform.CompareTag("TreeEncapsulator"))
             return;
 
-        agent.isStopped = true;
+        navMeshAgent.isStopped = true;
 
         target = other.transform.parent.GetComponentInChildren<TreeStatus>();
         if (target == null)

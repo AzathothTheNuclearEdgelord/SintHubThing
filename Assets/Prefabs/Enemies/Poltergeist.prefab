@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 1
   enemyWeight: 1
-  agent: {fileID: -2219136987663654812}
+  navMeshAgent: {fileID: -2219136987663654812}
   enemyHealth: 0
 --- !u!54 &8475753096022423636
 Rigidbody:

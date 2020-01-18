@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class TreeStatus : MonoBehaviour
 {
-    public GameObject deadTree;
     public int health;
-    public int attackWeight;
+    [Header("Leave this alone")]
+    [SerializeField] public GameObject deadTree;
+    [SerializeField] public int attackWeight;
 
     public void HitTree(int dmgValue)
     {
-        print("That hurt!" + health);
-        print(dmgValue);
-        
         health -= dmgValue;
         if (health <= 0)
         {
