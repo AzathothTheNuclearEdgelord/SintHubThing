@@ -6,13 +6,16 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [Header("Enemy Specific")]
-    public int attackDamage = 1;
+    [Header("Enemy Specific")] public int attackDamage = 1;
     public int enemyWeight = 1;
     public NavMeshAgent navMeshAgent;
+
     public int enemyHealth;
-    private TreeStatus target;
+
     private GameObject[] treeSockets;
+    private int currentTreeSocketIndex = -1;
+    public EnemyScout enemyScout;
+    private TreeStatus target;
     private Animator animator;
     private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
 
@@ -23,10 +26,11 @@ public class EnemyBehaviour : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         if (!animator)
             Debug.LogError("Didn't find animator");
-        if (treeSockets.Length > 0)
-        {
-            navMeshAgent.SetDestination(treeSockets[0].transform.position);
-        }
+        // if (treeSockets.Length > 0)
+        // {
+        //     navMeshAgent.SetDestination(treeSockets[0].transform.position);
+        // }
+        SetNewTarget();
     }
 
     void FindTreeSockets()
@@ -59,32 +63,56 @@ public class EnemyBehaviour : MonoBehaviour
 
     void SetNewTarget()
     {
-        float shortestDistance = Mathf.Infinity;
-        Transform potentialTarget;
+        Dictionary<int, GameObject> ordinalTreeDistanceDict = new Dictionary<int, GameObject>();
+        int lowestIndex = Int32.MaxValue;
         print($"Number of treeSockets: {treeSockets.Length}");
         foreach (GameObject treeSocket in treeSockets)
         {
             print($"Treesocket: {treeSocket}");
-            TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
-            if (treeStatus == null)
+            // TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
+            // if (treeStatus == null)
+            //     continue;
+            int index = treeSocket.GetComponent<TreeSocketIndex>().socketIndex;
+            if (index <= currentTreeSocketIndex)
                 continue;
-            navMeshAgent.SetDestination(treeSocket.transform.position);
-            shortestDistance = Math.Min(navMeshAgent.remainingDistance, shortestDistance);
-            print($"Distance: {shortestDistance}");
+            ordinalTreeDistanceDict.Add(index, treeSocket);
+            print(index+" "+lowestIndex);
+            lowestIndex = Mathf.Min(index, lowestIndex);
+        }
+
+        currentTreeSocketIndex = lowestIndex;
+        print("setting new destination" + lowestIndex);
+        navMeshAgent.SetDestination(ordinalTreeDistanceDict[lowestIndex].transform.position);
+    }
+
+    // void SetNewTarget()
+        // {
+        //     float shortestDistance = Mathf.Infinity;
+        //     Transform potentialTarget;
+        //     print($"Number of treeSockets: {treeSockets.Length}");
+        //     foreach (GameObject treeSocket in treeSockets)
+        //     {
+        //         print($"Treesocket: {treeSocket}");
+        //         TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
+        //         if (treeStatus == null)
+        //             continue;
+        //         navMeshAgent.SetDestination(treeSocket.transform.position);
+        //         shortestDistance = Math.Min(navMeshAgent.remainingDistance, shortestDistance);
+        //         print($"Distance: {shortestDistance}");
+        //     }
+        // }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            // if not dead tree, keep going
+            if (!other.transform.CompareTag("TreeEncapsulator"))
+                return;
+
+            navMeshAgent.isStopped = true;
+
+            target = other.transform.parent.GetComponentInChildren<TreeStatus>();
+            if (target == null)
+                Debug.LogError("treeStatus not found");
+            StartCoroutine(Attack());
         }
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        // if not dead tree, keep going
-        if (!other.transform.CompareTag("TreeEncapsulator"))
-            return;
-
-        navMeshAgent.isStopped = true;
-
-        target = other.transform.parent.GetComponentInChildren<TreeStatus>();
-        if (target == null)
-            Debug.LogError("treeStatus not found");
-        StartCoroutine(Attack());
-    }
-}
