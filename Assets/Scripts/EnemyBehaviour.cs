@@ -69,14 +69,18 @@ public class EnemyBehaviour : MonoBehaviour
         foreach (GameObject treeSocket in treeSockets)
         {
             print($"Treesocket: {treeSocket}");
-            // TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
-            // if (treeStatus == null)
-            //     continue;
+            TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
+            if (treeStatus == null)
+                continue;
+
             int index = treeSocket.GetComponent<TreeSocketIndex>().socketIndex;
+
             if (index <= currentTreeSocketIndex)
                 continue;
+
             ordinalTreeDistanceDict.Add(index, treeSocket);
-            print(index+" "+lowestIndex);
+            print($"Adding {treeSocket} {index}");
+            print(index + " " + lowestIndex);
             lowestIndex = Mathf.Min(index, lowestIndex);
         }
 
@@ -86,33 +90,42 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // void SetNewTarget()
-        // {
-        //     float shortestDistance = Mathf.Infinity;
-        //     Transform potentialTarget;
-        //     print($"Number of treeSockets: {treeSockets.Length}");
-        //     foreach (GameObject treeSocket in treeSockets)
-        //     {
-        //         print($"Treesocket: {treeSocket}");
-        //         TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
-        //         if (treeStatus == null)
-        //             continue;
-        //         navMeshAgent.SetDestination(treeSocket.transform.position);
-        //         shortestDistance = Math.Min(navMeshAgent.remainingDistance, shortestDistance);
-        //         print($"Distance: {shortestDistance}");
-        //     }
-        // }
+    // {
+    //     float shortestDistance = Mathf.Infinity;
+    //     Transform potentialTarget;
+    //     print($"Number of treeSockets: {treeSockets.Length}");
+    //     foreach (GameObject treeSocket in treeSockets)
+    //     {
+    //         print($"Treesocket: {treeSocket}");
+    //         TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
+    //         if (treeStatus == null)
+    //             continue;
+    //         navMeshAgent.SetDestination(treeSocket.transform.position);
+    //         shortestDistance = Math.Min(navMeshAgent.remainingDistance, shortestDistance);
+    //         print($"Distance: {shortestDistance}");
+    //     }
+    // }
 
-        private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
+    {
+        // if not dead tree, keep going
+        if (!other.transform.CompareTag("TreeEncapsulator"))
+            return;
+
+        target = other.transform.parent.GetComponentInChildren<TreeStatus>();
+        if (target == null)
+            return;
+        TreeSocketIndex treeSocketIndex = GetComponentInParent<TreeSocketIndex>();
+        if (treeSocketIndex == null)
         {
-            // if not dead tree, keep going
-            if (!other.transform.CompareTag("TreeEncapsulator"))
-                return;
+            Debug.LogError("no index found");
+            return;
+        }
 
+        if (treeSocketIndex.socketIndex == currentTreeSocketIndex)
+        {
             navMeshAgent.isStopped = true;
-
-            target = other.transform.parent.GetComponentInChildren<TreeStatus>();
-            if (target == null)
-                Debug.LogError("treeStatus not found");
             StartCoroutine(Attack());
         }
     }
+}

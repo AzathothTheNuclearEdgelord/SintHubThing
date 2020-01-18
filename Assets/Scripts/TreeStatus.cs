@@ -6,9 +6,8 @@ using UnityEngine;
 public class TreeStatus : MonoBehaviour
 {
     public int health;
-    [Header("Leave this alone")]
-    [SerializeField] public GameObject deadTree;
-    [SerializeField] public int attackWeight;
+    [HideInInspector] public GameObject deadTree;
+    [HideInInspector] public int attackWeight;
 
     public void HitTree(int dmgValue)
     {
