@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteMovement : MonoBehaviour {
+public class SpriteRotation : MonoBehaviour {
     private GameObject mainCamera;
     void Start()
     {

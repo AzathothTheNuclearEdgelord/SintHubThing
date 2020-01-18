@@ -14,7 +14,7 @@
           <e p="EnemyScout.cs" t="Include" />
           <e p="EnemySpawner.cs" t="Include" />
           <e p="MouseInterface.cs" t="Include" />
-          <e p="SpriteMovement.cs" t="Include" />
+          <e p="SpriteRotation.cs" t="Include" />
           <e p="TreeManager.cs" t="Include" />
           <e p="TreeSocketIndex.cs" t="Include" />
           <e p="TreeStatus.cs" t="Include" />

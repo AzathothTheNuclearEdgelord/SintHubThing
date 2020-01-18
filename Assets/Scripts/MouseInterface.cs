@@ -8,7 +8,7 @@ public class MouseInterface : MonoBehaviour
     public Camera cam;
     public TreeManager treeManager;
     [HideInInspector] public GameObject currentDeadTree;
-
+    [HideInInspector] public GameObject currentTreeEncapsulator;
 
     void Update()
     {
@@ -24,14 +24,16 @@ public class MouseInterface : MonoBehaviour
                     // treeManager.deadTree = hit.transform.gameObject.GetComponent();
                     GameObject colliderObject = hit.transform.gameObject;
                     currentDeadTree = colliderObject.transform.Find("DeadTree").gameObject;
+                    currentTreeEncapsulator = colliderObject.transform.Find("TreeEncapsulator").gameObject;
                     if (currentDeadTree == null)
                         print("PANIC!");
                     else
                     {
                         // found dead tree
-                        if (currentDeadTree.active)
+                        if (currentDeadTree)
                         {
                             treeManager.currentDeadTree = currentDeadTree;
+                            treeManager.currentTreeEncapsulator = currentTreeEncapsulator;
                             menu.SetActive(true);
                         }
                     }

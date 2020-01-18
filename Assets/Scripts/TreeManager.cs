@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Turrets
-{
-    Pine,
-    Cherry,
-    Birch
-}
-
 public class TreeManager : MonoBehaviour
 {
     public GameObject pinePrefab;
     public GameObject birchPrefab;
     public GameObject cherryPrefab;
+    [HideInInspector] public GameObject currentTreeEncapsulator;
     [HideInInspector] public GameObject currentDeadTree;
     public GameObject menu;
 
@@ -36,6 +30,7 @@ public class TreeManager : MonoBehaviour
         }
 
         currentDeadTree.gameObject.SetActive(false);
+        currentTreeEncapsulator.gameObject.SetActive(true);
         menu.gameObject.SetActive(false);
     }
 
@@ -50,5 +45,7 @@ public class TreeManager : MonoBehaviour
         if (treeStatus == null)
             Debug.LogError("No treeStatus found");
         treeStatus.deadTree = currentDeadTree;
+        treeStatus.treeEncapsulator = currentTreeEncapsulator;
+        gameObject.SendMessage("ReceivedCommand", "reconcider target");
     }
 }

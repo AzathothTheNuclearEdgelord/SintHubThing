@@ -14,7 +14,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private GameObject[] treeSockets;
     private int currentTreeSocketIndex = -1;
-    public EnemyScout enemyScout;
     private TreeStatus target;
     private Animator animator;
     private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
@@ -53,6 +52,11 @@ public class EnemyBehaviour : MonoBehaviour
 
         SetNewTarget();
         navMeshAgent.isStopped = false;
+    }
+
+    public void ReceivedCommand(string command)
+    {
+        print($"Received command: {command}");
     }
 
     void EnemyDeath()
@@ -115,7 +119,7 @@ public class EnemyBehaviour : MonoBehaviour
         target = other.transform.parent.GetComponentInChildren<TreeStatus>();
         if (target == null)
             return;
-        TreeSocketIndex treeSocketIndex = GetComponentInParent<TreeSocketIndex>();
+        TreeSocketIndex treeSocketIndex = other.transform.GetComponentInParent<TreeSocketIndex>();
         if (treeSocketIndex == null)
         {
             Debug.LogError("no index found");

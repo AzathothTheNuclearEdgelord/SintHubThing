@@ -7,6 +7,7 @@ public class TreeStatus : MonoBehaviour
 {
     public int health;
     [HideInInspector] public GameObject deadTree;
+    [HideInInspector] public GameObject treeEncapsulator;
     [HideInInspector] public int attackWeight;
 
     public void HitTree(int dmgValue)
@@ -16,6 +17,7 @@ public class TreeStatus : MonoBehaviour
         {
             print("I'M DEAD");
             deadTree.SetActive(true);
+            treeEncapsulator.SetActive(false);
             Destroy(gameObject);
         }
     }

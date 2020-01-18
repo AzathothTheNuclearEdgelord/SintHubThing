@@ -23,7 +23,7 @@ public class EnemyScout : MonoBehaviour
         Dictionary<float, GameObject> treeDistanceDict = new Dictionary<float, GameObject>();
 
         //navMeshAgent.isStopped = true;
-        Transform potentialTarget;
+        //Transform potentialTarget;
         print(message: $"Number of treeSockets: {treeSockets.Length}");
         foreach (GameObject treeSocket in treeSockets)
         {
