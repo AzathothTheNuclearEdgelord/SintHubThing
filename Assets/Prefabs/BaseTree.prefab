@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5220425881044685544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407083792152106104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9278dfc693ac530d3b9f8e1523301df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  deadTree: {fileID: 0}
+  treeEncapsulator: {fileID: 0}
 --- !u!1 &8089614020760765889
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +25,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8533768611868537984}
   - component: {fileID: 2857098125756636456}
-  - component: {fileID: 5974979258921623128}
   m_Layer: 0
   m_Name: TreeEncapsulator
   m_TagString: TreeEncapsulator
@@ -46,22 +60,6 @@ CapsuleCollider:
   m_Height: 6.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5974979258921623128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8089614020760765889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9278dfc693ac530d3b9f8e1523301df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  deadTree: {fileID: 0}
-  treeEncapsulator: {fileID: 0}
-  attackWeight: 0
 --- !u!1 &9022997372947354952
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +190,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12f6a3b68bade4c089dc71114656dac, type: 3}
+--- !u!1 &407083792152106104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: e12f6a3b68bade4c089dc71114656dac,
+    type: 3}
+  m_PrefabInstance: {fileID: 8540986100486032753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3746178320968803947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e12f6a3b68bade4c089dc71114656dac,

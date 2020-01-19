@@ -673,6 +673,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8651695505829429205, guid: 816d7eb4f41a9043686a91d75948b05f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 816d7eb4f41a9043686a91d75948b05f, type: 3}
 --- !u!1 &514698310
@@ -2367,28 +2372,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1715636873 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1715636873, guid: ab4779d1d2aff369492fd4e812bda5b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 488136399208772601}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1715636874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715636873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9278dfc693ac530d3b9f8e1523301df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  deadTree: {fileID: 0}
-  treeEncapsulator: {fileID: 0}
-  attackWeight: 0
 --- !u!1 &1850117750
 GameObject:
   m_ObjectHideFlags: 0

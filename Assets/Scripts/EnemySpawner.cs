@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,12 +30,18 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject ghostPrefab;
     public Transform spawnPoint;
-
+    [HideInInspector] public GameObject[] treeSockets;
     public delegate void EnemyUpdate(string command);
 
-    private event EnemyUpdate UpdateEvent;
+    public EnemyUpdate UpdateEvent;
     
     void Awake()
+    {
+        treeSockets = GameObject.FindGameObjectsWithTag("TreeSocket");
+    
+    }
+
+    private void Start()
     {
         EnemyBehaviour enemyBehaviour = Instantiate(ghostPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
         UpdateEvent += enemyBehaviour.EnemyCallback;
@@ -42,9 +49,10 @@ public class EnemySpawner : MonoBehaviour
 
     public void RequestUpdate(string txt)
     {
-        UpdateEvent(txt);
-        
+        UpdateEvent?.Invoke(txt);
+
     }
+    
     
     
 

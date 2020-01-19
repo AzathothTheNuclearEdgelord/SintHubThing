@@ -12,16 +12,18 @@ public class EnemyBehaviour : MonoBehaviour
 
     public int enemyHealth;
 
-    private GameObject[] treeSockets;
+    [HideInInspector] public EnemySpawner enemySpawner;
     private int currentTreeSocketIndex = -1;
     private TreeStatus target;
-    private Animator animator;
-    private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
 
+    private Animator animator;
+
+    // pressed alt + enter / JetBrains' intelligence
+    private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
 
     private void Start()
     {
-        FindTreeSockets();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
         animator = GetComponentInChildren<Animator>();
         if (!animator)
             Debug.LogError("Didn't find animator");
@@ -29,22 +31,21 @@ public class EnemyBehaviour : MonoBehaviour
         // {
         //     navMeshAgent.SetDestination(treeSockets[0].transform.position);
         // }
-        SetNewTarget();
+        //SetNewTarget();
     }
 
     public void EnemyCallback(string command)
     {
-        print($"Enemy update {command}");
-    }
-    
-    void FindTreeSockets()
-    {
-        treeSockets = GameObject.FindGameObjectsWithTag("TreeSocket");
+        // print($"Enemy update {command}");
+        if (animator == null || !animator.GetBool(IsAttacking))
+        {
+            SetNewTarget();
+        }
     }
 
     IEnumerator Attack()
     {
-        target.attackWeight += enemyWeight;
+        target.AttackWeight += enemyWeight;
         WaitForSeconds waitOneSecond = new WaitForSeconds(1);
         animator.SetBool(IsAttacking, true);
         while (target)
@@ -59,10 +60,14 @@ public class EnemyBehaviour : MonoBehaviour
         navMeshAgent.isStopped = false;
     }
 
+    void EnemyHit()
+    {
+    }
+
     void EnemyDeath()
     {
         if (target)
-            target.attackWeight -= enemyWeight;
+            target.AttackWeight -= enemyWeight;
     }
 
     void SetNewTarget()
@@ -70,9 +75,9 @@ public class EnemyBehaviour : MonoBehaviour
         Dictionary<int, GameObject> ordinalTreeDistanceDict = new Dictionary<int, GameObject>();
         int lowestIndex = Int32.MaxValue;
         // print($"Number of treeSockets: {treeSockets.Length}");
-        foreach (GameObject treeSocket in treeSockets)
+        foreach (GameObject treeSocket in enemySpawner.treeSockets)
         {
-            // print($"Treesocket: {treeSocket}");
+            print($"Treesocket: {treeSocket}");
             TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
             if (treeStatus == null)
                 continue;
