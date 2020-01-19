@@ -14,6 +14,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [HideInInspector] public EnemySpawner enemySpawner;
     private int currentTreeSocketIndex = -1;
+    private int targetTreeSocketIndex = -1;
     private TreeStatus target;
 
     private Animator animator;
@@ -36,7 +37,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void EnemyCallback(string command)
     {
-        // print($"Enemy update {command}");
+        print($"Enemy update {command}");
         if (animator == null || !animator.GetBool(IsAttacking))
         {
             SetNewTarget();
@@ -77,7 +78,7 @@ public class EnemyBehaviour : MonoBehaviour
         // print($"Number of treeSockets: {treeSockets.Length}");
         foreach (GameObject treeSocket in enemySpawner.treeSockets)
         {
-            print($"Treesocket: {treeSocket}");
+            //print($"Treesocket: {treeSocket}");
             TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
             if (treeStatus == null)
                 continue;
@@ -93,8 +94,8 @@ public class EnemyBehaviour : MonoBehaviour
             lowestIndex = Mathf.Min(index, lowestIndex);
         }
 
-        currentTreeSocketIndex = lowestIndex;
-        // print("setting new destination" + lowestIndex);
+        targetTreeSocketIndex = lowestIndex;
+        print("setting new destination" + lowestIndex);
         navMeshAgent.SetDestination(ordinalTreeDistanceDict[lowestIndex].transform.position);
     }
 
@@ -131,8 +132,9 @@ public class EnemyBehaviour : MonoBehaviour
             return;
         }
 
-        if (treeSocketIndex.socketIndex == currentTreeSocketIndex)
+        if (treeSocketIndex.socketIndex == targetTreeSocketIndex)
         {
+            currentTreeSocketIndex = targetTreeSocketIndex;
             navMeshAgent.isStopped = true;
             StartCoroutine(Attack());
         }

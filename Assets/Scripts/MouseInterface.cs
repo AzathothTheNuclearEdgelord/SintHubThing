@@ -30,7 +30,7 @@ public class MouseInterface : MonoBehaviour
                     else
                     {
                         // found dead tree
-                        if (currentDeadTree)
+                        if (currentDeadTree.activeSelf)
                         {
                             treeManager.currentDeadTree = currentDeadTree;
                             treeManager.currentTreeEncapsulator = currentTreeEncapsulator;
