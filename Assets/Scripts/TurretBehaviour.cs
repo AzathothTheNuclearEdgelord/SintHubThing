@@ -12,7 +12,7 @@ public class TurretBehaviour : MonoBehaviour
     private float fireCountdown = 0;
 
     public GameObject bulletPrefab;
-    public GameObject emitter;
+    public Transform emitter;
 
     [Header("Unity Setup Fields")] public string enemyTag = "Enemy";
 
@@ -78,7 +78,8 @@ public class TurretBehaviour : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        
+        Debug.LogError("Override me!");
+        // is empty
     }
     
 

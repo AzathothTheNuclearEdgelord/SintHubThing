@@ -6,10 +6,10 @@ public class CannonBehaviour : TurretBehaviour
 {
     protected override void Shoot()
     {
-        GameObject bulletGO = Instantiate(bulletPrefab, emitter.transform).gameObject;
-        CannonBallBehaviour bullet = bulletGO.GetComponent<CannonBallBehaviour>();
+        GameObject bulletGO = Instantiate(bulletPrefab, emitter).gameObject;
+        CannonBallBehaviour cannonBallBehaviour = bulletGO.GetComponent<CannonBallBehaviour>();
 
-        if (bullet != null)
-            bullet.Seek(target);
+        if (cannonBallBehaviour != null)
+            cannonBallBehaviour.Seek(target);
     }
 }

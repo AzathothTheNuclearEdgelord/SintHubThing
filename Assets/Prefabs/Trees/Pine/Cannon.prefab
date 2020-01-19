@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 5567618112212980342}
   - component: {fileID: 3467527156458022976}
   - component: {fileID: 7143739221163414713}
-  - component: {fileID: 594074800066323751}
+  - component: {fileID: 305735256532302495}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -112,7 +112,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &594074800066323751
+--- !u!114 &305735256532302495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,12 +121,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8871949378469404773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7444b2366a68ad4a9a9632c6dcaa215, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cf409639483949938fe6a67301a856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
   fireRate: 1
   bulletPrefab: {fileID: 7563512232919969485, guid: 0b19b774369f514b4b0bd678e8f03295,
     type: 3}
-  emitter: {fileID: 594074801412229846}
+  emitter: {fileID: 594074801412229849}
   enemyTag: Enemy
