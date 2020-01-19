@@ -6,10 +6,15 @@ using UnityEngine;
 public class TreeStatus : MonoBehaviour
 {
     public int health;
+
+    [Tooltip("If this is the base tree set this to true")]
+    public bool isBaseTree;
+
     [HideInInspector] public GameObject deadTree;
     [HideInInspector] public GameObject treeEncapsulator;
     private int attackWeight;
     private EnemySpawner enemySpawner;
+    public GameObject finishPanel;
 
     public int AttackWeight
     {
@@ -27,6 +32,10 @@ public class TreeStatus : MonoBehaviour
 
     private void Start()
     {
+        finishPanel = GameObject.Find("GameFinish");
+        if (finishPanel == null)
+            Debug.LogError("Finish panel not found");
+        finishPanel.SetActive(false);
         enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.RequestUpdate("It's alive!");
     }
@@ -38,9 +47,21 @@ public class TreeStatus : MonoBehaviour
         {
             print("I'M DEAD");
             enemySpawner.RequestUpdate("WHYYYY!");
-            deadTree.SetActive(true);
-            treeEncapsulator.SetActive(false);
-            Destroy(gameObject);
+            if (isBaseTree)
+            {
+                finishPanel.SetActive(true);
+                Transform loseText = finishPanel.transform.Find("Lose");
+                if (loseText == null)
+                    Debug.LogError("Lose text not found");
+
+                loseText.gameObject.SetActive(true);
+            }
+            else
+            {
+                deadTree.SetActive(true);
+                treeEncapsulator.SetActive(false);
+                Destroy(gameObject);
+            }
         }
     }
 

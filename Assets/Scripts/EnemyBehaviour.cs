@@ -37,6 +37,14 @@ public class EnemyBehaviour : MonoBehaviour
         //SetNewTarget();
     }
 
+    private void Update()
+    {
+        if (target == null)
+        {
+            SetNewTarget();
+        }
+    }
+
     public void EnemyCallback(string command)
     {
         print($"Enemy update {command}");
@@ -77,7 +85,7 @@ public class EnemyBehaviour : MonoBehaviour
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRGH");
         enemySpawner.UpdateEvent -= EnemyCallback;
         StopCoroutine(Attack());
-        
+
         if (target)
             target.AttackWeight -= enemyWeight;
         Destroy(gameObject);
@@ -106,9 +114,14 @@ public class EnemyBehaviour : MonoBehaviour
             lowestIndex = Mathf.Min(index, lowestIndex);
         }
 
-        targetTreeSocketIndex = lowestIndex;
-        print("setting new destination" + lowestIndex);
-        navMeshAgent.SetDestination(ordinalTreeDistanceDict[lowestIndex].transform.position);
+        if (lowestIndex == Int32.MaxValue)
+            Debug.LogWarning("No new target found");
+        else
+        {
+            targetTreeSocketIndex = lowestIndex;
+            print("setting new destination" + lowestIndex);
+            navMeshAgent.SetDestination(ordinalTreeDistanceDict[lowestIndex].transform.position);
+        }
     }
 
     // void SetNewTarget()
