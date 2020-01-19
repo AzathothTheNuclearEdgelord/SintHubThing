@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8533768611868537984}
   - component: {fileID: 2857098125756636456}
+  - component: {fileID: 5974979258921623128}
   m_Layer: 0
   m_Name: TreeEncapsulator
   m_TagString: TreeEncapsulator
@@ -45,6 +46,22 @@ CapsuleCollider:
   m_Height: 6.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5974979258921623128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089614020760765889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9278dfc693ac530d3b9f8e1523301df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  deadTree: {fileID: 0}
+  treeEncapsulator: {fileID: 0}
+  attackWeight: 0
 --- !u!1 &9022997372947354952
 GameObject:
   m_ObjectHideFlags: 0

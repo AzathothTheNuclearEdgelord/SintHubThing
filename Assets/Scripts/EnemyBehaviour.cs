@@ -32,6 +32,11 @@ public class EnemyBehaviour : MonoBehaviour
         SetNewTarget();
     }
 
+    public void EnemyCallback(string command)
+    {
+        print($"Enemy update {command}");
+    }
+    
     void FindTreeSockets()
     {
         treeSockets = GameObject.FindGameObjectsWithTag("TreeSocket");
