@@ -34,11 +34,16 @@ public class EnemySpawner : MonoBehaviour
 
     private event EnemyUpdate UpdateEvent;
     
-    void Start()
+    void Awake()
     {
         EnemyBehaviour enemyBehaviour = Instantiate(ghostPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
         UpdateEvent += enemyBehaviour.EnemyCallback;
-        UpdateEvent("wake up");
+    }
+
+    public void RequestUpdate(string txt)
+    {
+        UpdateEvent(txt);
+        
     }
     
     

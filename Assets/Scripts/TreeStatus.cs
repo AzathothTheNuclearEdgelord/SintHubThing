@@ -10,6 +10,12 @@ public class TreeStatus : MonoBehaviour
     [HideInInspector] public GameObject treeEncapsulator;
     [HideInInspector] public int attackWeight;
 
+    private void Start()
+    {
+        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemySpawner.RequestUpdate("tree spawnedasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
+    }
+
     public void HitTree(int dmgValue)
     {
         health -= dmgValue;

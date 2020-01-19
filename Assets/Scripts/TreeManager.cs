@@ -46,6 +46,5 @@ public class TreeManager : MonoBehaviour
             Debug.LogError("No treeStatus found");
         treeStatus.deadTree = currentDeadTree;
         treeStatus.treeEncapsulator = currentTreeEncapsulator;
-        gameObject.SendMessage("ReceivedCommand", "reconcider target");
     }
 }

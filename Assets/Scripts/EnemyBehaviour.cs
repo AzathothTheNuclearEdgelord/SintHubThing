@@ -59,11 +59,6 @@ public class EnemyBehaviour : MonoBehaviour
         navMeshAgent.isStopped = false;
     }
 
-    public void ReceivedCommand(string command)
-    {
-        print($"Received command: {command}");
-    }
-
     void EnemyDeath()
     {
         if (target)
@@ -74,10 +69,10 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Dictionary<int, GameObject> ordinalTreeDistanceDict = new Dictionary<int, GameObject>();
         int lowestIndex = Int32.MaxValue;
-        print($"Number of treeSockets: {treeSockets.Length}");
+        // print($"Number of treeSockets: {treeSockets.Length}");
         foreach (GameObject treeSocket in treeSockets)
         {
-            print($"Treesocket: {treeSocket}");
+            // print($"Treesocket: {treeSocket}");
             TreeStatus treeStatus = treeSocket.transform.GetComponentInChildren<TreeStatus>();
             if (treeStatus == null)
                 continue;
@@ -88,13 +83,13 @@ public class EnemyBehaviour : MonoBehaviour
                 continue;
 
             ordinalTreeDistanceDict.Add(index, treeSocket);
-            print($"Adding {treeSocket} {index}");
-            print(index + " " + lowestIndex);
+            // print($"Adding {treeSocket} {index}");
+            // print(index + " " + lowestIndex);
             lowestIndex = Mathf.Min(index, lowestIndex);
         }
 
         currentTreeSocketIndex = lowestIndex;
-        print("setting new destination" + lowestIndex);
+        // print("setting new destination" + lowestIndex);
         navMeshAgent.SetDestination(ordinalTreeDistanceDict[lowestIndex].transform.position);
     }
 
