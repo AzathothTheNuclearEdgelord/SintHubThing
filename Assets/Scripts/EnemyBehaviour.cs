@@ -113,6 +113,9 @@ public class EnemyBehaviour : MonoBehaviour
     
     void SetNewTarget()
     {
+        // if not yet, initialised return.
+        if (enemySpawner == null || enemySpawner.treeSockets == null)
+            return;
         Dictionary<int, GameObject> ordinalTreeDistanceDict = new Dictionary<int, GameObject>();
         int lowestIndex = Int32.MaxValue;
         // print($"Number of treeSockets: {treeSockets.Length}");
