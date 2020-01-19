@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6284073447040158697}
   - component: {fileID: 3057527700102328799}
   - component: {fileID: 8742063386617957670}
-  - component: {fileID: 1319334032325124333}
+  - component: {fileID: 4412393198187314804}
   m_Layer: 0
   m_Name: CherryTurret Smol
   m_TagString: Untagged
@@ -113,7 +113,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1319334032325124333
+--- !u!114 &4412393198187314804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,11 +122,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7020788947569474042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7444b2366a68ad4a9a9632c6dcaa215, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cf409639483949938fe6a67301a856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
-  emitter: {fileID: 1319334031181357227}
+  range: 8
+  fireRate: 4
+  bulletPrefab: {fileID: 7563512232919969485, guid: ee73aa6c8271194eb92a03bf78fc5b2a,
+    type: 3}
+  emitter: {fileID: 1319334031181357226}
   enemyTag: Enemy

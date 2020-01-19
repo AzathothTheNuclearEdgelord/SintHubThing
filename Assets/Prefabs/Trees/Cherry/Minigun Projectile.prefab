@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7563512232919969475}
   - component: {fileID: 1617365602581669563}
   m_Layer: 0
-  m_Name: CannonBall
+  m_Name: Minigun Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7563512232919969485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 848a3ec0a40d6bb45b1bd3d91b18ed4b, type: 2}
+  - {fileID: 2100000, guid: 3a76bb5ecba923b4f99bed4fe0015956, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,5 +92,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025d5255e96fbc5e4a3f756f00762df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageOutput: 5
-  speed: 20
+  damageOutput: 1
+  speed: 40

@@ -993,7 +993,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.5622e-41, y: -6.3896614e+19, z: 4.5622e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1553,6 +1553,7 @@ MonoBehaviour:
   dogPrefab: {fileID: 8651695505110089522, guid: 816d7eb4f41a9043686a91d75948b05f,
     type: 3}
   spawnPoint: {fileID: 1495745004}
+  finishPanel: {fileID: 1047008725}
   treeSockets: []
 --- !u!1 &1096194795
 GameObject:

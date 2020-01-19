@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1858046966088462181}
-  - component: {fileID: 1858046966088462182}
+  - component: {fileID: 8355684296647280198}
   m_Layer: 0
   m_Name: CherryTurret Big
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1858046966088462182
+--- !u!114 &8355684296647280198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,13 +72,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858046966088462183}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7444b2366a68ad4a9a9632c6dcaa215, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cf409639483949938fe6a67301a856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
-  emitter: {fileID: 1858046965921279205}
+  range: 8
+  fireRate: 4
+  bulletPrefab: {fileID: 7563512232919969485, guid: ee73aa6c8271194eb92a03bf78fc5b2a,
+    type: 3}
+  emitter: {fileID: 1858046965921279204}
   enemyTag: Enemy
 --- !u!1001 &1858046967325591929
 PrefabInstance:
