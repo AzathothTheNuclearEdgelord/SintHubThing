@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class TreeStatus : MonoBehaviour
 {
-    public int health;
+    public int currentHealth;
+    public int maxHealth;
+    public Light light;
+    public float lightIntensityMultiplier = 20;
 
     [Tooltip("If this is the base tree set this to true")]
     public bool isBaseTree;
@@ -32,6 +35,13 @@ public class TreeStatus : MonoBehaviour
 
     private void Start()
     {
+        if (maxHealth == 0)
+        {
+            Debug.LogError("MaxHealth should not be zero!");
+        }
+        currentHealth = maxHealth;
+        print(maxHealth);
+
         if (isBaseTree)
         {
             finishPanel = GameObject.Find("GameFinish");
@@ -46,12 +56,18 @@ public class TreeStatus : MonoBehaviour
         enemySpawner.RequestUpdate("It's alive!");
     }
 
+    
+    private void Update()
+    {
+        float intensity = ((float)currentHealth / (float)maxHealth) * (float)lightIntensityMultiplier;
+        light.intensity = intensity;
+    }
+
     public void HitTree(int dmgValue)
     {
-        health -= dmgValue;
-        if (health <= 0)
+        currentHealth -= dmgValue;
+        if (currentHealth <= 0)
         {
-            print("I'M DEAD");
             enemySpawner.RequestUpdate("WHYYYY!");
             if (isBaseTree)
             {
@@ -72,16 +88,4 @@ public class TreeStatus : MonoBehaviour
     }
 
     // private int filter = 0;
-
-    private void Update()
-    {
-        // if (filter++ % 60 == 0)
-        // {
-        //     print($"weight: {attackWeight}");
-        // }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            HitTree(1000);
-        }
-    }
 }

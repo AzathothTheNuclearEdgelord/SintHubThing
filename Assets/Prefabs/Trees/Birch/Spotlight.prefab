@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4493131406473050802}
-  - component: {fileID: 4493131406473050803}
+  - component: {fileID: 7365413461636524073}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -64,7 +64,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4493131406473050803
+--- !u!114 &7365413461636524073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,13 +73,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4493131406473050800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7444b2366a68ad4a9a9632c6dcaa215, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cf409639483949938fe6a67301a856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3.5
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
-  emitter: {fileID: 0}
+  range: 10
+  fireRate: 0.5
+  bulletPrefab: {fileID: 7563512232919969485, guid: fbb0659801a1fbf54929b249b58a1dd0,
+    type: 3}
+  emitter: {fileID: 4493131405274188253}
   enemyTag: Enemy
 --- !u!1 &4493131406888737894
 GameObject:

@@ -15,7 +15,8 @@ public class EnemyBehaviour : MonoBehaviour
     [HideInInspector] public EnemySpawner enemySpawner;
     private int currentTreeSocketIndex = -1;
     private int targetTreeSocketIndex = -1;
-    private TreeStatus target;
+    private TreeStatus attackingTarget;
+    public bool inPersuit = false;
 
     private Animator animator;
 
@@ -37,36 +38,46 @@ public class EnemyBehaviour : MonoBehaviour
         //SetNewTarget();
     }
 
+    public bool isRunning;
+
+    private int forceRefresh = 0;
     private void Update()
     {
-        if (target == null)
-        {
+        isRunning = navMeshAgent.isStopped;
+        
+        if (forceRefresh++ % 60 == 0)
             SetNewTarget();
-        }
     }
+
+    public bool localAttacking = false; 
 
     public void EnemyCallback(string command)
     {
         print($"Enemy update {command}");
-        if (animator == null || !animator.GetBool(IsAttacking))
+        // if (!localAttacking)
         {
+            inPersuit = false;
             SetNewTarget();
         }
     }
 
     IEnumerator Attack()
     {
-        target.AttackWeight += enemyWeight;
+        attackingTarget.AttackWeight += enemyWeight;
         WaitForSeconds waitOneSecond = new WaitForSeconds(1);
         animator.SetBool(IsAttacking, true);
-        while (target)
+        localAttacking = true;
+        while (attackingTarget)
         {
-            target.HitTree(attackDamage);
+            attackingTarget.HitTree(attackDamage);
             yield return waitOneSecond;
         }
 
         animator.SetBool(IsAttacking, false);
-
+        localAttacking = false;
+        currentTreeSocketIndex = -1;
+        inPersuit = false;
+        
         SetNewTarget();
         navMeshAgent.isStopped = false;
     }
@@ -80,17 +91,26 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    void EnemyDeath()
+    void AbandonAttack()
     {
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRGH");
+        inPersuit = false;
         enemySpawner.UpdateEvent -= EnemyCallback;
         StopCoroutine(Attack());
 
-        if (target)
-            target.AttackWeight -= enemyWeight;
+        if (attackingTarget)
+            attackingTarget.AttackWeight -= enemyWeight;
+        
+    }
+    
+    void EnemyDeath()
+    {
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRGH");
+        AbandonAttack();
         Destroy(gameObject);
     }
 
+    public int peekIndex = -1;
+    
     void SetNewTarget()
     {
         Dictionary<int, GameObject> ordinalTreeDistanceDict = new Dictionary<int, GameObject>();
@@ -105,8 +125,8 @@ public class EnemyBehaviour : MonoBehaviour
 
             int index = treeSocket.GetComponent<TreeSocketIndex>().socketIndex;
 
-            if (index <= currentTreeSocketIndex)
-                continue;
+            // if (index <= currentTreeSocketIndex)
+            //     continue;
 
             ordinalTreeDistanceDict.Add(index, treeSocket);
             // print($"Adding {treeSocket} {index}");
@@ -115,12 +135,19 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         if (lowestIndex == Int32.MaxValue)
+        {
             Debug.LogWarning("No new target found");
+            inPersuit = false;
+        }
         else
         {
             targetTreeSocketIndex = lowestIndex;
-            print("setting new destination" + lowestIndex);
+            // print("setting new destination" + lowestIndex);
             navMeshAgent.SetDestination(ordinalTreeDistanceDict[lowestIndex].transform.position);
+            peekIndex = lowestIndex;
+            inPersuit = true;
+            navMeshAgent.isStopped = false;
+
         }
     }
 
@@ -147,8 +174,8 @@ public class EnemyBehaviour : MonoBehaviour
         if (!other.transform.CompareTag("TreeEncapsulator"))
             return;
 
-        target = other.transform.parent.GetComponentInChildren<TreeStatus>();
-        if (target == null)
+        attackingTarget = other.transform.parent.GetComponentInChildren<TreeStatus>();
+        if (attackingTarget == null)
             return;
         TreeSocketIndex treeSocketIndex = other.transform.GetComponentInParent<TreeSocketIndex>();
         if (treeSocketIndex == null)
@@ -161,8 +188,15 @@ public class EnemyBehaviour : MonoBehaviour
         {
             currentTreeSocketIndex = targetTreeSocketIndex;
             navMeshAgent.isStopped = true;
-            target.AttackWeight += enemyWeight;
+            attackingTarget.AttackWeight += enemyWeight;
             StartCoroutine(Attack());
         }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if(other.transform.CompareTag("TreeEncapsulator"))
+            AbandonAttack();
+            
     }
 }

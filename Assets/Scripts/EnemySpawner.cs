@@ -73,6 +73,12 @@ public class EnemySpawner : MonoBehaviour
         yield return StartCoroutine(SpawnWave(ghostPrefab, 5));
         yield return wavePause;
         yield return StartCoroutine(SpawnWave(ghostPrefab, 10));
+        yield return wavePause;
+        yield return StartCoroutine(SpawnWave(ghostPrefab, 10));
+        yield return StartCoroutine(SpawnWave(dogPrefab, 4));
+        yield return wavePause;
+        yield return StartCoroutine(SpawnWave(ghostPrefab, 6));
+        yield return StartCoroutine(SpawnWave(dogPrefab, 8));
         
         StartCoroutine(WaitForWinState());
     }

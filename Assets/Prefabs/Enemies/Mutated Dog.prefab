@@ -86,7 +86,7 @@ MonoBehaviour:
   attackDamage: 3
   enemyWeight: 2
   navMeshAgent: {fileID: 2850338366766463734}
-  enemyHealth: 0
+  enemyHealth: 500
   enemySpawner: {fileID: 0}
 --- !u!54 &7312564022281087521
 Rigidbody:

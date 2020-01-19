@@ -2973,14 +2973,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1715636877, guid: ab4779d1d2aff369492fd4e812bda5b7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1715636878, guid: ab4779d1d2aff369492fd4e812bda5b7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 5220425881044685544, guid: ab4779d1d2aff369492fd4e812bda5b7,
+        type: 3}
+      propertyPath: finishPanel
+      value: 
+      objectReference: {fileID: 1047008725}
     - target: {fileID: 9022997372947354952, guid: ab4779d1d2aff369492fd4e812bda5b7,
         type: 3}
       propertyPath: m_Name
