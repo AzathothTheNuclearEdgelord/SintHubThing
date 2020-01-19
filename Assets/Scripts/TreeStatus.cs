@@ -32,11 +32,17 @@ public class TreeStatus : MonoBehaviour
 
     private void Start()
     {
-        finishPanel = GameObject.Find("GameFinish");
-        if (finishPanel == null)
-            Debug.LogError("Finish panel not found");
-        finishPanel.SetActive(false);
+        if (isBaseTree)
+        {
+            finishPanel = GameObject.Find("GameFinish");
+            if (finishPanel == null)
+                Debug.LogError("Finish panel not found");
+            finishPanel.SetActive(false);
+        }
+
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        if (enemySpawner == null)
+            Debug.LogError("enemySpawner not found");
         enemySpawner.RequestUpdate("It's alive!");
     }
 
