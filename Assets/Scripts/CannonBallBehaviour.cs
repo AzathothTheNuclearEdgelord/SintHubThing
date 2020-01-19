@@ -6,6 +6,7 @@ public class CannonBallBehaviour : MonoBehaviour
 {
     private Transform target;
 
+    public int damageOutput = 5;
     public float speed = 70;
 
     public void Seek(Transform target)
@@ -34,6 +35,6 @@ public class CannonBallBehaviour : MonoBehaviour
 
     void HitTarget()
     {
-        print("*hit the target*");
+        target.GetComponent<EnemyBehaviour>().EnemyHit(damageOutput);
     }
 }

@@ -74,6 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void EnemyDeath()
     {
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRGH");
         enemySpawner.UpdateEvent -= EnemyCallback;
         StopCoroutine(Attack());
         
