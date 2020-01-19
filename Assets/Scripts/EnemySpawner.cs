@@ -31,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject spikeHeadPrefab;
     public GameObject dogPrefab;
     public Transform spawnPoint;
+    public GameObject finishPanel;
     [HideInInspector] public GameObject[] treeSockets;
 
     public delegate void EnemyUpdate(string command);
@@ -72,6 +73,26 @@ public class EnemySpawner : MonoBehaviour
         yield return StartCoroutine(SpawnWave(ghostPrefab, 5));
         yield return wavePause;
         yield return StartCoroutine(SpawnWave(ghostPrefab, 10));
+        
+        StartCoroutine(WaitForWinState());
+    }
+
+    IEnumerator WaitForWinState()
+    {
+        // still alive 
+        int enemiesLeft = 1;
+        while (enemiesLeft > 0)
+        {
+            GameObject[] livingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            enemiesLeft = livingEnemies.Length;
+            yield return true;
+        }
+
+        finishPanel.SetActive(true);
+        Transform winText = finishPanel.transform.Find("Win");
+        if (winText == null)
+            Debug.LogError("Win text not found");
+        winText.gameObject.SetActive(true);
     }
 
     public void RequestUpdate(string txt)
