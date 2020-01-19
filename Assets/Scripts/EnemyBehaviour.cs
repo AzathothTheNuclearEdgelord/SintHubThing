@@ -63,14 +63,23 @@ public class EnemyBehaviour : MonoBehaviour
         navMeshAgent.isStopped = false;
     }
 
-    void EnemyHit()
+    public void EnemyHit(int damageValue)
     {
+        enemyHealth -= damageValue;
+        if (enemyHealth <= 0)
+        {
+            EnemyDeath();
+        }
     }
 
     void EnemyDeath()
     {
+        enemySpawner.UpdateEvent -= EnemyCallback;
+        StopCoroutine(Attack());
+        
         if (target)
             target.AttackWeight -= enemyWeight;
+        Destroy(gameObject);
     }
 
     void SetNewTarget()
@@ -138,6 +147,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             currentTreeSocketIndex = targetTreeSocketIndex;
             navMeshAgent.isStopped = true;
+            target.AttackWeight += enemyWeight;
             StartCoroutine(Attack());
         }
     }

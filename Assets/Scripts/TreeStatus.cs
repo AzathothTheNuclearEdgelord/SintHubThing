@@ -14,15 +14,14 @@ public class TreeStatus : MonoBehaviour
     public int AttackWeight
     {
         get => attackWeight;
-        set => AttackWeightChange(value); 
+        set => AttackWeightChange(value);
         // set => attackWeight = value; 
-        
     }
 
     int AttackWeightChange(int value)
     {
         attackWeight += value;
-        // enemySpawner.RequestUpdate("Attack weight changed");
+        enemySpawner.RequestUpdate("Attack weight changed");
         return value;
     }
 
@@ -45,8 +44,14 @@ public class TreeStatus : MonoBehaviour
         }
     }
 
+    // private int filter = 0;
+
     private void Update()
     {
+        // if (filter++ % 60 == 0)
+        // {
+        //     print($"weight: {attackWeight}");
+        // }
         if (Input.GetKeyDown(KeyCode.K))
         {
             HitTree(1000);

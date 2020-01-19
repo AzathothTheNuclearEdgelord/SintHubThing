@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    
 // https://www.tutorialspoint.com/csharp/csharp_events.htm   
 // namespace SampleApp {
 //     public delegate string MyDel(string str);
@@ -33,17 +32,22 @@ public class EnemySpawner : MonoBehaviour
     public GameObject dogPrefab;
     public Transform spawnPoint;
     [HideInInspector] public GameObject[] treeSockets;
+
     public delegate void EnemyUpdate(string command);
 
     public EnemyUpdate UpdateEvent;
-    
+
     void Awake()
     {
         treeSockets = GameObject.FindGameObjectsWithTag("TreeSocket");
-    
     }
 
     private void Start()
+    {
+        SpawnEnemies();
+    }
+
+    void SpawnEnemies()
     {
         EnemyBehaviour enemyBehaviour = Instantiate(ghostPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
         UpdateEvent += enemyBehaviour.EnemyCallback;
@@ -52,10 +56,5 @@ public class EnemySpawner : MonoBehaviour
     public void RequestUpdate(string txt)
     {
         UpdateEvent?.Invoke(txt);
-
     }
-    
-    
-    
-
 }
