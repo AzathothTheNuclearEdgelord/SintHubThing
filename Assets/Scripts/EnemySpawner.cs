@@ -29,6 +29,8 @@ public class EnemySpawner : MonoBehaviour
 
 
     public GameObject ghostPrefab;
+    public GameObject spikeHeadPrefab;
+    public GameObject dogPrefab;
     public Transform spawnPoint;
     [HideInInspector] public GameObject[] treeSockets;
     public delegate void EnemyUpdate(string command);
@@ -43,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        EnemyBehaviour enemyBehaviour = Instantiate(ghostPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
+        EnemyBehaviour enemyBehaviour = Instantiate(dogPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
         UpdateEvent += enemyBehaviour.EnemyCallback;
     }
 
