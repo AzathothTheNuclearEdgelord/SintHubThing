@@ -35,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
 
     public delegate void EnemyUpdate(string command);
 
+    WaitForSeconds waitSpawnInterval;
+
     public EnemyUpdate UpdateEvent;
 
     void Awake()
@@ -44,13 +46,32 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnEnemies();
+        waitSpawnInterval = new WaitForSeconds(.5f);
+        StartCoroutine(SpawnEnemies());
     }
 
-    void SpawnEnemies()
+    void SpawnEnemy(GameObject prefab)
     {
-        EnemyBehaviour enemyBehaviour = Instantiate(ghostPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
+        EnemyBehaviour enemyBehaviour = Instantiate(prefab, spawnPoint).GetComponent<EnemyBehaviour>();
         UpdateEvent += enemyBehaviour.EnemyCallback;
+    }
+
+    IEnumerator SpawnWave(GameObject prefab, int waveSize)
+    {
+        for (int i = 0; i < waveSize; i++)
+        {
+            SpawnEnemy(prefab);
+            yield return waitSpawnInterval;
+        }
+    }
+
+    IEnumerator SpawnEnemies()
+    {
+        WaitForSeconds wavePause = new WaitForSeconds(10);
+        // gentle startup
+        yield return StartCoroutine(SpawnWave(ghostPrefab, 5));
+        yield return wavePause;
+        yield return StartCoroutine(SpawnWave(ghostPrefab, 10));
     }
 
     public void RequestUpdate(string txt)
