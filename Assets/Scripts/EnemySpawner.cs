@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        EnemyBehaviour enemyBehaviour = Instantiate(dogPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
+        EnemyBehaviour enemyBehaviour = Instantiate(ghostPrefab, spawnPoint).GetComponent<EnemyBehaviour>();
         UpdateEvent += enemyBehaviour.EnemyCallback;
     }
 

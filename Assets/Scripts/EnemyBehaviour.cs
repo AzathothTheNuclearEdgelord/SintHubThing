@@ -25,6 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Start()
     {
         navMeshAgent.updateRotation = false;
+        navMeshAgent.stoppingDistance = 1.5f;
         enemySpawner = FindObjectOfType<EnemySpawner>();
         animator = GetComponentInChildren<Animator>();
         if (!animator)
